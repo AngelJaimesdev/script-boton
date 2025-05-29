@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   try {
-    const response = await fetch('https://back-ecommerce-orpin.vercel.app/generate-token');
+    const response = await fetch('https://back-ecommerce-teal.vercel.app/generate-token');
     const data = await response.json();
 
     if (data && data.token) {
