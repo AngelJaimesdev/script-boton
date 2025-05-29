@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const button = document.querySelector('pay-button');
   console.log("JS cargado");
   if (!button) return;
@@ -43,6 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
     button.style.border = '2px solid #2d2e7e';
     text.style.color = '#0066ad';
   });
+
+  try {
+    const response = await fetch('https://back-ecommerce-orpin.vercel.app/generate-token');
+    const data = await response.json();
+
+    if (data && data.token) {
+      button.setAttribute('secureToken', data.token);
+    } else {
+      console.error("Respuesta inválida al obtener token");
+    }
+  } catch (err) {
+    console.error("Error al obtener el token:", err);
+    return;
+  }
 
   button.addEventListener('click', async () => {
     try {
